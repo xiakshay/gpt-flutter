@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gpt_flutter/constants/themes.dart';
 import 'package:gpt_flutter/screens/chat_screen.dart';
 
 void main() {
@@ -11,7 +12,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ChatScreen(),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
+      home: const ChatScreen(),
     );
   }
 }

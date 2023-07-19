@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gpt_flutter/models/chat_model.dart';
 import 'package:gpt_flutter/providers/chats_provider.dart';
 import 'package:gpt_flutter/services/ai_handler.dart';
+import 'package:gpt_flutter/services/voice_handler.dart';
 import 'package:gpt_flutter/widgets/toggle_button.dart';
 
 enum InputMode {
@@ -21,6 +23,15 @@ class _TextAndVoiceFieldState extends ConsumerState<TextAndVoiceField> {
   InputMode _inputMode = InputMode.voice;
   final _messageController = TextEditingController();
   final AIHandler _openAI = AIHandler();
+  final VoiceHandler _voiceHandler = VoiceHandler();
+  var _isReplying = false;
+  var _isListining = false;
+
+  @override
+  void initState() {
+    _voiceHandler.initSpeech();
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -57,6 +68,8 @@ class _TextAndVoiceFieldState extends ConsumerState<TextAndVoiceField> {
           width: 6,
         ),
         ToggleButton(
+          isReplying: _isReplying,
+          isListining: _isListining,
           inputMode: _inputMode,
           sendTextMessage: () {
             final message = _messageController.text;
@@ -75,11 +88,55 @@ class _TextAndVoiceFieldState extends ConsumerState<TextAndVoiceField> {
     });
   }
 
-  void sendVoiceMessage() {}
+  void sendVoiceMessage() async {
+    if (!_voiceHandler.isEnabled) {
+      Fluttertoast.showToast(
+          msg: "Microphone is not working.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      return;
+    }
+    if (_voiceHandler.speechToText.isListening) {
+      await _voiceHandler.stopListining();
+      setListiningState(false);
+    } else {
+      setListiningState(true);
+      final result = await _voiceHandler.startListining();
+      setListiningState(false);
+      sendTextMessage(result);
+    }
+  }
+
   Future<void> sendTextMessage(String message) async {
+    setReplyingState(true);
     addToChatList(message, true, DateTime.now().toString());
+    addToChatList('Typing...', false, 'typing');
+    setInputMode(InputMode.voice);
     final aiResponse = await _openAI.getResponse(message);
+    removeTyping();
     addToChatList(aiResponse, false, DateTime.now().toString());
+    setReplyingState(false);
+  }
+
+  void setReplyingState(bool isReplying) {
+    setState(() {
+      _isReplying = isReplying;
+    });
+  }
+
+  void setListiningState(bool isListining) {
+    setState(() {
+      _isListining = isListining;
+    });
+  }
+
+  void removeTyping() {
+    final chats = ref.read(chatsProvider.notifier);
+    chats.removeTyping();
   }
 
   void addToChatList(String message, bool isMe, String id) {

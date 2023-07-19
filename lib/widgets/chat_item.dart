@@ -15,6 +15,7 @@ class ChatItem extends StatelessWidget {
         horizontal: 12,
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment:
             isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gpt_flutter/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gpt_flutter/providers/chats_provider.dart';
 import 'package:gpt_flutter/widgets/chat_item.dart';
 import 'package:gpt_flutter/widgets/my_app_bar.dart';
 import 'package:gpt_flutter/widgets/text_and_voice_field.dart';
@@ -15,13 +16,16 @@ class ChatScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => const ChatItem(
-                  text: 'This is me.',
-                  isMe: true,
-                ),
-              ),
+              child: Consumer(builder: (context, ref, child) {
+                final chats = ref.watch(chatsProvider);
+                return ListView.builder(
+                  itemCount: chats.length,
+                  itemBuilder: (context, index) => ChatItem(
+                    text: chats[index].message,
+                    isMe: chats[index].isMe,
+                  ),
+                );
+              }),
             ),
             const Padding(
               padding: EdgeInsets.all(12.0),

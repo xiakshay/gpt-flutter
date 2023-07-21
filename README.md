@@ -1,16 +1,13 @@
-# gpt_flutter
-
-A new Flutter project.
-
+# GPT- Flutter
+Flutter app which uses openAI API to interect with user and answer their queries. This application has ability to use voice command so that user will able to chat without typing.
+ 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+[![Watch the video](./App_and_Video/gpt.png)](./App_and_Video/GPT-Flutter.mp4)
 
-A few resources to get you started if this is your first Flutter project:
+![Application arm64](./App_and_Video/app-arm64-v8a-release.apk)
+![Application armeabi](./App_and_Video/app-armeabi-v7a-release.apk)
+![Application x86](./App_and_Video/app-x86_64-release.apk)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️🛠️

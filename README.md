@@ -8,7 +8,8 @@ Testing video - [Click to picture](https://drive.google.com/file/d/1X3D-X5B-Vwpj
 [![Watch the video](./App_and_Video/gpt.png)](https://drive.google.com/file/d/1X3D-X5B-VwpjQfa8bjxDnmTvccsAhOQy/view?usp=sharing)
 
 ----
-Drive app link - [Click Here](https://drive.google.com/file/d/1repVRD-4fPaR5iLIXmm5nYqI0ys83fVL/view?usp=sharing)
+Drive app link X86 - [Click Here](https://drive.google.com/file/d/1repVRD-4fPaR5iLIXmm5nYqI0ys83fVL/view?usp=sharing)
+Drive app link arm64 - [Click Here](https://drive.google.com/file/d/1QOEn5jEXaUrPtfpgyD2yjLDi2JZ0QT6C/view?usp=sharing)
 ----
 
 

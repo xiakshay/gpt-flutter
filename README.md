@@ -3,7 +3,7 @@ Flutter app which uses openAI API to interect with user and answer their queries
  
 ## Getting Started
 -----
-Testing video - [Click to picture](https://drive.google.com/file/d/1X3D-X5B-VwpjQfa8bjxDnmTvccsAhOQy/view?usp=sharing) 
+Testing video - [Click on picture](https://drive.google.com/file/d/1X3D-X5B-VwpjQfa8bjxDnmTvccsAhOQy/view?usp=sharing) 
 -----
 [![Watch the video](./App_and_Video/gpt.png)](https://drive.google.com/file/d/1X3D-X5B-VwpjQfa8bjxDnmTvccsAhOQy/view?usp=sharing)
 
